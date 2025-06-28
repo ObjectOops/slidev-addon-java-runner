@@ -1,6 +1,6 @@
 ---
 theme: default
-layout: default
+layout: two-cols-header
 # Future feature, not implemented yet.
 # `tools.jar` doesn't come with versions past 8.
 # java:
@@ -8,6 +8,8 @@ layout: default
 ---
 
 # Java Code Runner for Slidev
+
+::left::
 
 ```java {monaco-run} {runnerOptions:{entrypoint:false, file_path:'MyClass.java'}}
 package demo;
@@ -22,12 +24,14 @@ public class MyClass {
 }
 ```
 
+::right::
+
 ```java {monaco-run} {runnerOptions:{addSources:['MyClass.java']}}
 package demo;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, world!");
+        System.out.println("\033[96mHello, world!\033[m");
         
         MyClass.foo();
         MyClass myObject = new MyClass();

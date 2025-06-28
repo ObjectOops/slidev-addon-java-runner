@@ -27,7 +27,7 @@ async function setupCheerpJ(): Promise<void> {
     cheerpOSAddStringFile("/str/tools.jar", await (await fetch('bootstrap/tools.jar')).bytes());
     console.log('Creating output console.');
     // Undocumented feature: CheerpJ implicitly looks for `#console` to write to.
-    output = document.createElement('div');
+    output = document.createElement('pre');
     output.id = "console";
     document.body.appendChild(output);
     console.log('Initialization complete.')
@@ -35,7 +35,7 @@ async function setupCheerpJ(): Promise<void> {
 
 await loadScript('https://cjrtnc.leaningtech.com/4.2/loader.js');
 
-let output: HTMLDivElement;
+let output: HTMLPreElement;
 await setupCheerpJ();
 
 async function compileAndRunMain(
@@ -59,9 +59,10 @@ async function compileAndRunMain(
         console.log(`Started process ${classNameFull}.`);
         processCode = await cheerpjRunMain(classNameFull, "/str/tools.jar:/files/");
         console.log('Finished process.');
-        return {text: output.innerText}
+        return output.textContent?.split('\n')
+            .map((line) => ({text: line, highlightLang: 'ansi'})) ?? [];
     }
-    return {text: output.innerText}
+    return {error: output.innerText}
 }
 
 export default defineCodeRunnersSetup(() => {
@@ -71,9 +72,9 @@ export default defineCodeRunnersSetup(() => {
             let filePath = ctx.options['file_path'];
             const additionalSources = (ctx.options.addSources ?? []) as string[];
             if (!isEntrypoint && filePath === undefined) {
-                return {text:'Must specify file path.'};
+                return {error:'Must specify file path.'};
             }
-            filePath = filePath ?? 'Main.java';
+            filePath ??= 'Main.java';
             cheerpOSAddStringFile(`/str/${filePath}`, code);
             return isEntrypoint 
                 ? await compileAndRunMain(filePath as string, code, additionalSources) 
