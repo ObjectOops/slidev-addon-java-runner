@@ -59,8 +59,7 @@ async function compileAndRunMain(
         console.log(`Started process ${classNameFull}.`);
         processCode = await cheerpjRunMain(classNameFull, "/str/tools.jar:/files/");
         console.log('Finished process.');
-        return output.textContent?.split('\n')
-            .map((line) => ({text: line, highlightLang: 'ansi'})) ?? [];
+        return {text: output.textContent ?? "", highlightLang: 'ansi'};
     }
     return {error: output.innerText}
 }
