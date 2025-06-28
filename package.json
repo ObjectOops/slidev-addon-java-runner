@@ -1,0 +1,33 @@
+{
+  "name": "slidev-addon-java-runner",
+  "version": "1.0.0",
+  "description": "Slidev addon for Java code runner.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "slidev --remote --bind 127.0.0.1 example.md",
+    "build": "slidev build example.md",
+    "export": "slidev export example.md",
+    "screenshot": "slidev export example.md --format png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ObjectOops/slidev-addon-java-runner.git"
+  },
+  "keywords": [
+    "slidev-addon",
+    "slidev",
+    "java",
+    "cheerp",
+    "cheerpj"
+  ],
+  "author": "ObjectOops",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ObjectOops/slidev-addon-java-runner/issues"
+  },
+  "homepage": "https://github.com/ObjectOops/slidev-addon-java-runner#readme",
+  "devDependencies": {
+    "@slidev/cli": "^51.8.2",
+    "@slidev/theme-default": "^0.25.0"
+  }
+}
