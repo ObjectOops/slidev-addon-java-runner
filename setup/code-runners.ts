@@ -16,18 +16,35 @@ console.log('Initializing CheerpJ...');
 await cheerpjInit();
 console.log('Obtaining tools.jar...');
 cheerpOSAddStringFile("/str/tools.jar", await (await fetch('bootstrap/tools.jar')).bytes());
+console.log('Creating output console.');
+// Undocumented feature: CheerpJ implicitly looks for `#console` to write to.
+const output = document.createElement('div');
+output.id = "console";
+document.body.appendChild(output);
+console.log('Initialization complete.')
 
 export default defineCodeRunnersSetup(() => {
     return {
         async java(code, ctx) {
             cheerpOSAddStringFile("/str/Main.java", code);
-            const processCode = await cheerpjRunMain("com.sun.tools.javac.Main", "/str/tools.jar:/files/", "/str/Main.java", "-d", "/files/", '-Xlint');
+            output.innerText = '';
+            console.log('Started compiling.');
+            let processCode = await cheerpjRunMain("com.sun.tools.javac.Main", "/str/tools.jar:/files/", "/str/Main.java", "-d", "/files/", '-Xlint');
+            console.log('Finished compiling.');
             if (processCode == 0) {
-                cheerpjRunMain("what.Main", "/str/tools.jar:/files/");
+                output.innerText = '';
+                console.log('Started process.');
+                processCode = await cheerpjRunMain("Main", "/str/tools.jar:/files/");
+                console.log('Finished process.');
+                return {text: output.innerText}
             }
-            return {
-                text: "TESTING"
-            }
+            return {text: output.innerText}
         }
     }
 })
+
+// Should add:
+// - Get stdout. (Implicitly looks for console. Create a dummy one and then delete it.)
+// - Define Java version.
+// - Way to define entrypoint or just add to fs.
+// - Way to define package name for entrypoint.
