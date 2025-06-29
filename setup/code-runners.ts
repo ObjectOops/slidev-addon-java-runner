@@ -59,9 +59,12 @@ async function compileAndRunMain(
         console.log(`Started process ${classNameFull}.`);
         processCode = await cheerpjRunMain(classNameFull, "/str/tools.jar:/files/");
         console.log('Finished process.');
+        if (processCode != 0) {
+            output.textContent += `\n\x1b[91mProcess exited with code ${processCode}.\x1b[0m`;
+        }
         return {text: output.textContent ?? "", highlightLang: 'ansi'};
     }
-    return {error: output.innerText}
+    return {error: output.textContent ?? ""}
 }
 
 export default defineCodeRunnersSetup(() => {
