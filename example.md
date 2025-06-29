@@ -26,12 +26,20 @@ public class MyClass {
 
 ::right::
 
-```java {monaco-run} {runnerOptions:{addSources:['MyClass.java']}}
+```
+# Arguments passed:
+arg1 arg2 arg3
+```
+
+```java {monaco-run} {runnerOptions:{addSources:['MyClass.java'], args:['arg1', 'arg2', 'arg3']}}
 package demo;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("\033[96mHello, world!\033[0m");
+        System.out.println(Arrays.toString(args));
         
         MyClass.foo();
         MyClass myObject = new MyClass();
