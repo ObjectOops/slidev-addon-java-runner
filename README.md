@@ -1,9 +1,13 @@
 # slidev-addon-java-runner
 
+[![NPM Version](https://img.shields.io/npm/v/slidev-addon-java-runner)](https://www.npmjs.com/package/slidev-addon-java-runner)
+
 <img width="696" alt="image" src="https://github.com/user-attachments/assets/88e7277b-d96b-40b5-8bdb-3f04279d42cc" />
 
 Java code runner addon for Slidev. In-browser code execution using [CheerpJ](https://cheerpj.com/).
 > CheerpJ is not open-source, but is free under its community license ([more details](https://github.com/leaningtech/cheerpj-meta)).
+
+[Live Demo](https://objectoops.github.io/slidev-addon-java-runner/)
 
 ## Install
 
