@@ -31,7 +31,7 @@ public class MyClass {
 arg1 arg2 arg3
 ```
 
-```java {monaco-run} {runnerOptions:{addSources:['MyClass.java'], args:['arg1', 'arg2', 'arg3']}}
+```java {monaco-run} {autorun:false, runnerOptions:{addSources:['MyClass.java'], args:['arg1', 'arg2', 'arg3']}}
 package demo;
 
 import java.util.Arrays;
