@@ -1,6 +1,6 @@
 {
   "name": "slidev-addon-java-runner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Slidev addon for Java code runner.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
