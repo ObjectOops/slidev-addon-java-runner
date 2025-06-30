@@ -1,6 +1,6 @@
 {
   "name": "slidev-addon-java-runner",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Slidev addon for Java code runner.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,6 +26,12 @@
     "url": "https://github.com/ObjectOops/slidev-addon-java-runner/issues"
   },
   "homepage": "https://github.com/ObjectOops/slidev-addon-java-runner#readme",
+  "files": [
+    "bootstrap",
+    "setup",
+    "example.md",
+    "CHANGELOG.md"
+  ],
   "devDependencies": {
     "@slidev/cli": "^51.8.2",
     "@slidev/theme-default": "^0.25.0"
